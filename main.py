@@ -64,6 +64,9 @@ async def on_message(message):
     if message.author.bot:
         return
 
+    if "quaggan" in message.content.lower():
+        await message.channel.send("Quaggan")
+
     await client.process_commands(message)
 
 file = open("token.txt", "r")
