@@ -7,6 +7,7 @@ from discord.ext import commands
 
 # Local File Imports
 import genericBot
+import RaidScheduler
 
 bot_prefix = "!"
 client = commands.Bot(command_prefix=bot_prefix)
@@ -33,14 +34,14 @@ async def addRole(ctx, role):
 
     newRole = genericBot.searchRoles(roleList, role)
     try:
-        if newRole!= None:
+        if newRole is not None:
             if newRole not in user.roles:
                 await user.add_roles(newRole)
                 await ctx.send("Enjoy your new role!")
         else:
             await ctx.send("That isn't a role! Current roles you can have are: Fractal")
     except:
-        await ctx.send("That role isn't available, the current roles you can have are: Fractal")
+        await ctx.send("That role isn't available")
 
 @client.command()
 async def removeRole(ctx, role):
@@ -50,14 +51,20 @@ async def removeRole(ctx, role):
     newRole = genericBot.searchRoles(roleList, role)
 
     try:
-        if newRole != None:
+        if newRole is not None:
             await user.remove_roles(newRole)
             await ctx.send("Role has been removed")
 
         else:
             await ctx.send("That isn't a role! Current roles you can have are: Fractal")
     except:
-        await ctx.send("That role isn't available, the current roles you can have are: Fractal")
+        await ctx.send("That role isn't available")
+
+@client.command()
+async def scheduleRaid(ctx, time):
+    inputTime = time
+    user = ctx.message.author
+    
 
 @client.event
 async def on_message(message):
