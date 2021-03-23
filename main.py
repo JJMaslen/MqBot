@@ -61,10 +61,21 @@ async def removeRole(ctx, role):
         await ctx.send("That role isn't available")
 
 @client.command()
-async def scheduleRaid(ctx, time):
+async def scheduleRaid(ctx, time, *args):
     inputTime = time
     user = ctx.message.author
-    
+
+    await ctx.send("{} is hosting a Raid at: {}. They will be doing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+
+@client.event
+async def on_reaction_add(reaction, user):
+    print("added")
+    #do things to add person to the list
+
+@client.event
+async def on_raw_reaction_remove(reaction):
+    print("removed")
+    #do things to remove person from the list
 
 @client.event
 async def on_message(message):
