@@ -10,24 +10,24 @@ import genericBot
 import RaidScheduler
 
 bot_prefix = "!"
-client = commands.Bot(command_prefix=bot_prefix)
-client.remove_command("help")
+bot = commands.Bot(command_prefix=bot_prefix)
+bot.remove_command("help")
 
-@client.event
+@bot.event
 async def on_ready():
     print("Mq Bot is online!")
     print("Name: Mq Bot")
-    print("TD: {}".format(client.user.id))
+    print("TD: {}".format(bot.user.id))
 
-@client.command()
+@bot.command()
 async def test(ctx):
     await ctx.send("Hello World")
 
-@client.command()
+@bot.command()
 async def beans(ctx):
     await ctx.send("Beans")
 
-@client.command()
+@bot.command()
 async def addRole(ctx, role):
     user = ctx.message.author
     roleList = user.guild.roles
@@ -43,7 +43,7 @@ async def addRole(ctx, role):
     except:
         await ctx.send("That role isn't available")
 
-@client.command()
+@bot.command()
 async def removeRole(ctx, role):
     user = ctx.message.author
     roleList = user.guild.roles
@@ -60,34 +60,51 @@ async def removeRole(ctx, role):
     except:
         await ctx.send("That role isn't available")
 
-@client.command()
+@bot.command()
+@commands.has_any_role('Leader','Officer')
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
     user = ctx.message.author
 
-    await ctx.send("{} is hosting a Raid at: {}. They will be doing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+    if not RaidScheduler.checkRaid(user):
+        RaidScheduler.createRaidEvent(user)
+        await ctx.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+    else:
+        await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
 
-@client.event
-async def on_reaction_add(reaction, user):
-    print("added")
-    #do things to add person to the list
+@bot.command()
+@commands.has_any_role('Leader','Officer')
+async def checkRaid(ctx):
+    user = ctx.message.author
 
-@client.event
-async def on_raw_reaction_remove(reaction):
-    print("removed")
-    #do things to remove person from the list
 
-@client.event
-async def on_message(message):
+@bot.event
+async def on_raw_reaction_add(payload):
+    # Pull information from payload
+    user = payload.member
+    messageID = payload.message_id
+    channelID = payload.channel_id
+
+    # Get message from id's, get channel -> get message
+    channel = await bot.fetch_channel(channelID)
+    message = await channel.fetch_message(messageID)
+
+    # Raid Schedule reaction check
     if message.author.bot:
-        return
+        if "is hosting a Raid at" in message.content:
+            RaidScheduler.addToList()
 
-    if "quaggan" in message.content.lower():
-        await message.channel.send("Quaggan")
+    # Test things
+    print("An Emote has been added")
+    #print(user)
+    #print(await reaction.users().flatten())
 
-    await client.process_commands(message)
+@bot.event
+async def on_raw_reaction_remove(payload):
+    print("An Emote has been removed")
+    #do things to remove person from the list
 
 file = open("token.txt", "r")
 token = str(file.read())
 file.close()
-client.run(token)
+bot.run(token)
