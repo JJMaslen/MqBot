@@ -1,16 +1,21 @@
 import dbMethods
 
 # create new raid event
-def createRaidEvent(user):
+def createRaidEvent(host, time, wings):
+    role = "host"
+    dbMethods.createTable_EventTable(host)
+    dbMethods.addPlayer(host, host, role, time, wings)
 
-    #create new table
-    pass
 
 # check to see if raid event already exists
-def checkRaid(user):
+def checkRaid(host):
     # if table already exists with this users name, then return true
     # else return false
-    return True
+    ifTableExists = dbMethods.checkTable(host)
+    if ifTableExists:
+        return True
+    else:
+        return False
 
 # posts raid event information into the text chat
 def postRaid():

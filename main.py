@@ -9,6 +9,9 @@ from discord.ext import commands
 import genericBot
 import RaidScheduler
 
+# for testing only remove at end
+import dbMethods
+
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
 bot.remove_command("help")
@@ -64,11 +67,13 @@ async def removeRole(ctx, role):
 @commands.has_any_role('Leader','Officer')
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
-    user = ctx.message.author
+    user = ctx.message.author.name
+    print(RaidScheduler.checkRaid(user))
 
     if not RaidScheduler.checkRaid(user):
-        RaidScheduler.createRaidEvent(user)
-        await ctx.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+        RaidScheduler.createRaidEvent(user, time, str(args))
+        message = await ctx.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+        await message.add_reaction("👍")
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
 
@@ -77,6 +82,10 @@ async def scheduleRaid(ctx, time, *args):
 async def checkRaid(ctx):
     user = ctx.message.author
 
+@bot.command()
+@commands.has_any_role('Leader', 'Officer')
+async def deleteRaid(ctx):
+    pass
 
 @bot.event
 async def on_raw_reaction_add(payload):
