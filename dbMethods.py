@@ -21,7 +21,12 @@ def create_table(conn, create_table_sql):
 def add_entry(conn, entry, sql):
     cur = conn.cursor()
     cur.execute(sql, entry)
-    conn.commit()
+    return cur.lastrowid
+
+def remove_entry(conn, sql):
+    cur = conn.cursor()
+    cur.execute(sql)
+
 
 def read_table(conn, sql):
     cur = conn.cursor()
@@ -33,6 +38,10 @@ def read_table(conn, sql):
 def table_names(conn, sql):
     cur = conn.cursor()
     return cur.execute(sql)
+
+def delete_table(conn, sql):
+    c = conn.cursor()
+    c.execute(sql)
 
 # Custom Commands
 def createTable_EventTable(host):
@@ -52,6 +61,15 @@ def createTable_EventTable(host):
         create_table(conn, sql_create_raidEvents_table)
     else:
         print("Error! Cannot create the database connection")
+
+def deleteTable_EventTable(host):
+    file = open("databasePath.txt", "r")
+    database = str(file.read())
+    file.close()
+
+    sql = """DROP TABLE raidEvents{}""".format(host)
+    conn = create_connection(database)
+    delete_table(conn, sql)
 
 def readTable(host):
     file = open("databasePath.txt", "r")
@@ -86,3 +104,13 @@ def addPlayer(host, user, role, time, wings):
     with conn:
         NewEntry = (user, role, time, wings)
         add_entry(conn, NewEntry, sql)
+
+def removePlayer(host, user):
+    file = open("databasePath.txt", "r")
+    database = str(file.read())
+    file.close()
+
+    sql = """ DELETE FROM raidEvents{} WHERE name = {}""".format(host, user)
+    conn = create_connection(database)
+    with conn:
+        remove_entry(conn, sql)

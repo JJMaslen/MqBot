@@ -13,7 +13,8 @@ import RaidScheduler
 import dbMethods
 
 bot_prefix = "!"
-bot = commands.Bot(command_prefix=bot_prefix)
+intents = discord.Intents().all()
+bot = commands.Bot(command_prefix=bot_prefix, intents=intents)
 bot.remove_command("help")
 
 @bot.event
@@ -68,7 +69,8 @@ async def removeRole(ctx, role):
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
     user = ctx.message.author.name
-    print(RaidScheduler.checkRaid(user))
+    raidMessageID = ctx.message.id
+    print(raidMessageID)
 
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
@@ -84,24 +86,40 @@ async def checkRaid(ctx):
 
 @bot.command()
 @commands.has_any_role('Leader', 'Officer')
-async def deleteRaid(ctx):
-    pass
+async def cancelRaid(ctx):
+    user = ctx.message.author.name
+
+    if RaidScheduler.checkRaid(user):
+        RaidScheduler.deleteRaidEvent(user)
+        await ctx.send("Your scheduled raid has been cancelled")
+    else:
+        await ctx.send("You do not currently have a raid scheduled to cancel")
 
 @bot.event
 async def on_raw_reaction_add(payload):
+
     # Pull information from payload
     user = payload.member
+    userName = user.name
+    print(userName)
     messageID = payload.message_id
     channelID = payload.channel_id
+
+    # Cancels if user is bot
+    if user.bot:
+        return
 
     # Get message from id's, get channel -> get message
     channel = await bot.fetch_channel(channelID)
     message = await channel.fetch_message(messageID)
 
+    # THIS NEEDS TO BE FIXED, CURRENTLY GETS THE BOT AS THE HOST
+    host = message.author.name
     # Raid Schedule reaction check
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
-            RaidScheduler.addToList()
+            print(host + " AND " + userName)
+            RaidScheduler.addToList(host, userName)
 
     # Test things
     print("An Emote has been added")
@@ -110,8 +128,24 @@ async def on_raw_reaction_add(payload):
 
 @bot.event
 async def on_raw_reaction_remove(payload):
+    # Pull information from payload
+    userID = payload.user_id
+    user = bot.get_user(userID)
+    messageID = payload.message_id
+    channelID = payload.channel_id
+
+    # Cancels if user is bot
+    if user.bot:
+        return
+
+    # Get message from id's, get channel -> get message
+    channel = await bot.fetch_channel(channelID)
+    message = await channel.fetch_message(messageID)
+
+    host = message.author.name
+
+    #test things
     print("An Emote has been removed")
-    #do things to remove person from the list
 
 file = open("token.txt", "r")
 token = str(file.read())

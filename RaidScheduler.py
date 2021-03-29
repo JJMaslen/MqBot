@@ -6,6 +6,8 @@ def createRaidEvent(host, time, wings):
     dbMethods.createTable_EventTable(host)
     dbMethods.addPlayer(host, host, role, time, wings)
 
+def deleteRaidEvent(host):
+    dbMethods.deleteTable_EventTable(host)
 
 # check to see if raid event already exists
 def checkRaid(host):
@@ -22,12 +24,15 @@ def postRaid():
     pass
 
 # adds person to a raid event list
-def addToList():
-    pass
+def addToList(host, user):
+    role = "player"
+    time = "na"
+    wings = "na"
+    dbMethods.addPlayer(host, user, role, time, wings)
 
 # removes person from a raid event list
-def RemoveFromList():
-    pass
+def RemoveFromList(host, user):
+    dbMethods.removePlayer(host, user)
 
 # officer must be able to schedule raid
 
