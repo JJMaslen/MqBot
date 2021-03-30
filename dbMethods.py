@@ -96,7 +96,6 @@ def checkTable(host):
     return False
 
 def addPlayer(host, user, role):
-    print(host + " " + user + " " + role + " Test addPlayer")
     file = open("databasePath.txt", "r")
     database = str(file.read())
     file.close()
