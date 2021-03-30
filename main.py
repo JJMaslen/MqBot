@@ -9,9 +9,6 @@ from discord.ext import commands
 import genericBot
 import RaidScheduler
 
-# for testing only remove at end
-import dbMethods
-
 bot_prefix = "!"
 intents = discord.Intents().all()
 bot = commands.Bot(command_prefix=bot_prefix, intents=intents)
@@ -68,9 +65,8 @@ async def removeRole(ctx, role):
 @commands.has_any_role('Leader','Officer')
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
-    user = ctx.message.author.name
+    user = ctx.message.author.nick.split()[0]
     raidMessageID = ctx.message.id
-    print(raidMessageID)
 
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
@@ -81,13 +77,16 @@ async def scheduleRaid(ctx, time, *args):
 
 @bot.command()
 @commands.has_any_role('Leader','Officer')
-async def checkRaid(ctx):
-    user = ctx.message.author
+async def viewRaid(ctx):
+    user = ctx.message.author.nick.split()[0]
+    raidPlayers = RaidScheduler.postRaid(user)
+
+    await ctx.send(raidPlayers)
 
 @bot.command()
 @commands.has_any_role('Leader', 'Officer')
 async def cancelRaid(ctx):
-    user = ctx.message.author.name
+    user = ctx.message.author.nick.split()[0]
 
     if RaidScheduler.checkRaid(user):
         RaidScheduler.deleteRaidEvent(user)
@@ -100,8 +99,8 @@ async def on_raw_reaction_add(payload):
 
     # Pull information from payload
     user = payload.member
-    userName = user.name
-    print(userName)
+    userName = user.nick
+
     messageID = payload.message_id
     channelID = payload.channel_id
 
@@ -113,24 +112,24 @@ async def on_raw_reaction_add(payload):
     channel = await bot.fetch_channel(channelID)
     message = await channel.fetch_message(messageID)
 
-    # THIS NEEDS TO BE FIXED, CURRENTLY GETS THE BOT AS THE HOST
-    host = message.author.name
     # Raid Schedule reaction check
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
-            print(host + " AND " + userName)
+            host = message.content.split()[0]
             RaidScheduler.addToList(host, userName)
 
     # Test things
     print("An Emote has been added")
-    #print(user)
-    #print(await reaction.users().flatten())
 
 @bot.event
 async def on_raw_reaction_remove(payload):
     # Pull information from payload
     userID = payload.user_id
-    user = bot.get_user(userID)
+    guild = bot.get_guild(751842622888476722)
+
+    user = guild.get_member(userID)
+    userName = user.nick
+
     messageID = payload.message_id
     channelID = payload.channel_id
 
@@ -142,7 +141,10 @@ async def on_raw_reaction_remove(payload):
     channel = await bot.fetch_channel(channelID)
     message = await channel.fetch_message(messageID)
 
-    host = message.author.name
+    if message.author.bot:
+        if "is hosting a Raid at" in message.content:
+            host = message.content.split()[0]
+            RaidScheduler.removeFromList(host, userName)
 
     #test things
     print("An Emote has been removed")

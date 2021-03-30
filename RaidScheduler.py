@@ -4,7 +4,7 @@ import dbMethods
 def createRaidEvent(host, time, wings):
     role = "host"
     dbMethods.createTable_EventTable(host)
-    dbMethods.addPlayer(host, host, role, time, wings)
+    dbMethods.addPlayer(host, host, role)
 
 def deleteRaidEvent(host):
     dbMethods.deleteTable_EventTable(host)
@@ -20,18 +20,16 @@ def checkRaid(host):
         return False
 
 # posts raid event information into the text chat
-def postRaid():
-    pass
+def postRaid(host):
+    return dbMethods.readTable(host)
 
 # adds person to a raid event list
 def addToList(host, user):
     role = "player"
-    time = "na"
-    wings = "na"
-    dbMethods.addPlayer(host, user, role, time, wings)
+    dbMethods.addPlayer(host, user, role)
 
 # removes person from a raid event list
-def RemoveFromList(host, user):
+def removeFromList(host, user):
     dbMethods.removePlayer(host, user)
 
 # officer must be able to schedule raid

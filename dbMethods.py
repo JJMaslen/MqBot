@@ -23,10 +23,9 @@ def add_entry(conn, entry, sql):
     cur.execute(sql, entry)
     return cur.lastrowid
 
-def remove_entry(conn, sql):
+def remove_entry(conn, entry, sql):
     cur = conn.cursor()
-    cur.execute(sql)
-
+    cur.execute(sql, entry)
 
 def read_table(conn, sql):
     cur = conn.cursor()
@@ -51,10 +50,7 @@ def createTable_EventTable(host):
 
     sql_create_raidEvents_table = """ CREATE TABLE IF NOT EXISTS raidEvents{}  (
                                         name text PRIMARY KEY, 
-                                        role text NOT NULL,
-                                        time text,
-                                        wings text
-                                        
+                                        role text NOT NULL
                                         ); """.format(host)
     conn = create_connection(database)
     if conn is not None:
@@ -76,7 +72,12 @@ def readTable(host):
     database = str(file.read())
     file.close()
 
-    sql = '''SELECT '''
+    sql = """SELECT name FROM raidEvents{}""".format(host)
+
+    conn = create_connection(database)
+    data = read_table(conn, sql)
+
+    return data
 
 def checkTable(host):
     file = open("databasePath.txt", "r")
@@ -94,15 +95,16 @@ def checkTable(host):
 
     return False
 
-def addPlayer(host, user, role, time, wings):
+def addPlayer(host, user, role):
+    print(host + " " + user + " " + role + " Test addPlayer")
     file = open("databasePath.txt", "r")
     database = str(file.read())
     file.close()
 
-    sql = """ INSERT INTO raidEvents{}(name, role, time, wings) VALUES(?,?,?,?)""".format(host)
+    sql = """ INSERT INTO raidEvents{}(name, role) VALUES(?,?)""".format(host)
     conn = create_connection(database)
     with conn:
-        NewEntry = (user, role, time, wings)
+        NewEntry = (user, role)
         add_entry(conn, NewEntry, sql)
 
 def removePlayer(host, user):
@@ -110,7 +112,8 @@ def removePlayer(host, user):
     database = str(file.read())
     file.close()
 
-    sql = """ DELETE FROM raidEvents{} WHERE name = {}""".format(host, user)
+    sql = """DELETE FROM raidEvents{} WHERE name = ?""".format(host)
     conn = create_connection(database)
     with conn:
-        remove_entry(conn, sql)
+        Entry = (user,)
+        remove_entry(conn, Entry, sql)
