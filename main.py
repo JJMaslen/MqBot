@@ -22,7 +22,7 @@ async def on_ready():
 
 @bot.command()
 async def test(ctx):
-    await ctx.send("Hello World")
+    await ctx.send("Hello World", delete_after=10)
 
 @bot.command()
 async def beans(ctx):
@@ -40,7 +40,7 @@ async def addRole(ctx, role):
                 await user.add_roles(newRole)
                 await ctx.send("Enjoy your new role!")
         else:
-            await ctx.send("That isn't a role! Current roles you can have are: Fractal")
+            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP")
     except:
         await ctx.send("That role isn't available")
 
@@ -57,7 +57,7 @@ async def removeRole(ctx, role):
             await ctx.send("Role has been removed")
 
         else:
-            await ctx.send("That isn't a role! Current roles you can have are: Fractal")
+            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP")
     except:
         await ctx.send("That role isn't available")
 
@@ -66,11 +66,11 @@ async def removeRole(ctx, role):
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
     user = ctx.message.author.nick.split()[0]
-    raidMessageID = ctx.message.id
 
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
-        message = await ctx.send("{} is hosting a Raid at: {} (BST/GMT+1). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+        channel = bot.get_channel(821040703810437201)
+        message = await channel.send("{} is hosting a Raid at: {} (BST/GMT +1). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
         await message.add_reaction("👍")
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
@@ -99,7 +99,8 @@ async def on_raw_reaction_add(payload):
 
     # Pull information from payload
     user = payload.member
-    userName = user.nick
+    userNick = user.nick
+    userName = user.name
 
     messageID = payload.message_id
     channelID = payload.channel_id
@@ -116,7 +117,10 @@ async def on_raw_reaction_add(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
-            RaidScheduler.addToList(host, userName)
+            if user.nick == "None":
+                RaidScheduler.addToList(host, userName)
+            else:
+                RaidScheduler.addToList(host, userNick)
 
     # Test things
     print("An Emote has been added")
@@ -128,7 +132,8 @@ async def on_raw_reaction_remove(payload):
     guild = bot.get_guild(751842622888476722)
 
     user = guild.get_member(userID)
-    userName = user.nick
+    userName = user.name
+    userNick = user.nick
 
     messageID = payload.message_id
     channelID = payload.channel_id
@@ -144,7 +149,10 @@ async def on_raw_reaction_remove(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
-            RaidScheduler.removeFromList(host, userName)
+            if user.nick == "None":
+                RaidScheduler.removeFromList(host, userName)
+            else:
+                RaidScheduler.removeFromList(host, userNick)
 
     #test things
     print("An Emote has been removed")
