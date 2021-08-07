@@ -29,6 +29,18 @@ async def beans(ctx):
     await ctx.send("Beans")
 
 @bot.command()
+async def voteThing(ctx):
+    message = await ctx.send("Vote Thing")
+    await message.add_reaction("1️⃣")
+    await message.add_reaction("2️⃣")
+    await message.add_reaction("3️⃣")
+    await message.add_reaction("4️⃣")
+    await message.add_reaction("5️⃣")
+    await message.add_reaction("6️⃣")
+    await message.add_reaction("7️⃣")
+    await message.add_reaction("8️⃣")
+
+@bot.command()
 async def addRole(ctx, role):
     user = ctx.message.author
     roleList = user.guild.roles
@@ -40,7 +52,7 @@ async def addRole(ctx, role):
                 await user.add_roles(newRole)
                 await ctx.send("Enjoy your new role!")
         else:
-            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP")
+            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP, WvW")
     except:
         await ctx.send("That role isn't available")
 
@@ -57,7 +69,7 @@ async def removeRole(ctx, role):
             await ctx.send("Role has been removed")
 
         else:
-            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP")
+            await ctx.send("That isn't a role! Current roles you can have are: Fractal, Raid, Strike, PvP, WvW")
     except:
         await ctx.send("That role isn't available")
 

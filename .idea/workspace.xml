@@ -23,30 +23,36 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="486" />
+          <entry key="py" value="742" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="486" />
+          <entry key="Python" value="742" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.18" value="4" />
+          <entry key="project.open.time.19" value="2" />
+          <entry key="project.open.time.20" value="3" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.23" value="3" />
+          <entry key="project.open.time.24" value="2" />
+          <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.37" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+            <state relative-caret-position="17">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
               <folding>
                 <element signature="e#34#48#0" expanded="true" />
               </folding>
@@ -54,10 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dbMethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1581">
+            <state relative-caret-position="591">
               <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
@@ -105,10 +111,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1937" />
+    <option name="y" value="-21" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectId" id="1qA2WhBbPvH03TnWfUsTHcAqk3f" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -134,7 +141,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -146,6 +152,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -217,15 +224,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19978632" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.038988408" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49894625" visible="true" weight="0.27491784" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49894625" visible="true" weight="0.27006507" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -296,26 +303,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="72" column="71" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
           <folding>
             <element signature="e#34#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RaidScheduler.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/dbMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1581">
+        <state relative-caret-position="591">
           <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RaidScheduler.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
