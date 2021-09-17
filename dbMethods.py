@@ -72,7 +72,7 @@ def readTable(host):
     database = str(file.read())
     file.close()
 
-    sql = """SELECT name FROM raidEvents{}""".format(host)
+    sql = """SELECT name FROM raidEvents{} ORDER BY rowid""".format(host)
 
     conn = create_connection(database)
     data = read_table(conn, sql)

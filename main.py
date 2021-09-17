@@ -41,6 +41,18 @@ async def voteThing(ctx):
     await message.add_reaction("8️⃣")
 
 @bot.command()
+async def voteThingy(ctx):
+    message = await ctx.send("Vote Thing")
+    await message.add_reaction("1️⃣")
+    await message.add_reaction("2️⃣")
+    await message.add_reaction("3️⃣")
+    await message.add_reaction("4️⃣")
+    await message.add_reaction("5️⃣")
+    await message.add_reaction("6️⃣")
+    await message.add_reaction("7️⃣")
+    await message.add_reaction("8️⃣")
+
+@bot.command()
 async def addRole(ctx, role):
     user = ctx.message.author
     roleList = user.guild.roles
@@ -77,7 +89,7 @@ async def removeRole(ctx, role):
 @commands.has_any_role('Leader','Officer')
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
-    user = ctx.message.author.nick.split()[0]
+    user = ctx.message.author.display_name.split()[0]
 
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
@@ -90,7 +102,7 @@ async def scheduleRaid(ctx, time, *args):
 @bot.command()
 @commands.has_any_role('Leader','Officer')
 async def viewRaid(ctx):
-    user = ctx.message.author.nick.split()[0]
+    user = ctx.message.author.display_name.split()[0]
     raidPlayers = RaidScheduler.postRaid(user)
 
     await ctx.send(raidPlayers)
@@ -98,7 +110,7 @@ async def viewRaid(ctx):
 @bot.command()
 @commands.has_any_role('Leader', 'Officer')
 async def cancelRaid(ctx):
-    user = ctx.message.author.nick.split()[0]
+    user = ctx.message.author.display_name.split()[0]
 
     if RaidScheduler.checkRaid(user):
         RaidScheduler.deleteRaidEvent(user)
@@ -111,8 +123,7 @@ async def on_raw_reaction_add(payload):
 
     # Pull information from payload
     user = payload.member
-    userNick = user.nick
-    userName = user.name
+    userDisplayName = user.display_name
 
     messageID = payload.message_id
     channelID = payload.channel_id
@@ -129,10 +140,7 @@ async def on_raw_reaction_add(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
-            if user.nick == "None":
-                RaidScheduler.addToList(host, userName)
-            else:
-                RaidScheduler.addToList(host, userNick)
+            RaidScheduler.addToList(host, userDisplayName)
 
     # Test things
     print("An Emote has been added")
@@ -144,8 +152,7 @@ async def on_raw_reaction_remove(payload):
     guild = bot.get_guild(751842622888476722)
 
     user = guild.get_member(userID)
-    userName = user.name
-    userNick = user.nick
+    userDisplayName = user.display_name
 
     messageID = payload.message_id
     channelID = payload.channel_id
@@ -161,10 +168,7 @@ async def on_raw_reaction_remove(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
-            if user.nick == "None":
-                RaidScheduler.removeFromList(host, userName)
-            else:
-                RaidScheduler.removeFromList(host, userNick)
+            RaidScheduler.addToList(host, userDisplayName)
 
     #test things
     print("An Emote has been removed")
