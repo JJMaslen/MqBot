@@ -98,7 +98,7 @@ async def scheduleRaid(ctx, time, *args):
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
         channel = bot.get_channel(821040703810437201)
-        message = await channel.send("<@&821039188634763324> {} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+        message = await channel.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message. <@&821039188634763324>".format(user, inputTime, args))
         await message.add_reaction("👍")
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
@@ -144,6 +144,7 @@ async def on_raw_reaction_add(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
+            print(host)
             RaidScheduler.addToList(host, userDisplayName)
 
     # Test things
