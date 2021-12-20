@@ -29,6 +29,10 @@ async def beans(ctx):
     await ctx.send("Beans")
 
 @bot.command()
+async def quaggan(ctx):
+    await ctx.send("Quaggan")
+
+@bot.command()
 async def voteThing(ctx):
     message = await ctx.send("Vote Thing")
     await message.add_reaction("1️⃣")
@@ -94,7 +98,7 @@ async def scheduleRaid(ctx, time, *args):
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
         channel = bot.get_channel(821040703810437201)
-        message = await channel.send("{} is hosting a Raid at: {} (BST/GMT +1). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
+        message = await channel.send("<@&821039188634763324> {} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message.".format(user, inputTime, args))
         await message.add_reaction("👍")
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")

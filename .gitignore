@@ -1,2 +1,4 @@
 token.txt
 *.txt
+db/mq.db
+build/
