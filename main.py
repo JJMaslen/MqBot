@@ -1,7 +1,6 @@
 # Main Imports
 
 # Discord Imports
-import discord
 import discord.ext
 from discord.ext import commands
 
@@ -23,14 +22,6 @@ async def on_ready():
 @bot.command()
 async def test(ctx):
     await ctx.send("Hello World", delete_after=10)
-
-@bot.command()
-async def beans(ctx):
-    await ctx.send("Beans")
-
-@bot.command()
-async def quaggan(ctx):
-    await ctx.send("Quaggan")
 
 @bot.command()
 async def voteThing(ctx):
@@ -93,11 +84,13 @@ async def removeRole(ctx, role):
 @commands.has_any_role('Leader','Officer')
 async def scheduleRaid(ctx, time, *args):
     inputTime = time
-    user = ctx.message.author.display_name.split()[0]
+    user = ctx.message.author.display_name
+    userID = ctx.message.author.id
 
     if not RaidScheduler.checkRaid(user):
-        RaidScheduler.createRaidEvent(user, time, str(args))
-        channel = bot.get_channel(821040703810437201)
+        RaidScheduler.createRaidEvent(userID, time, str(args))
+        RaidScheduler.cr
+        channel = bot.get_channel(922494025687269417)
         message = await channel.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message. <@&821039188634763324>".format(user, inputTime, args))
         await message.add_reaction("👍")
     else:
@@ -144,11 +137,10 @@ async def on_raw_reaction_add(payload):
     if message.author.bot:
         if "is hosting a Raid at" in message.content:
             host = message.content.split()[0]
-            print(host)
             RaidScheduler.addToList(host, userDisplayName)
 
     # Test things
-    print("An Emote has been added")
+    #print("An Emote has been added")
 
 @bot.event
 async def on_raw_reaction_remove(payload):
@@ -176,7 +168,7 @@ async def on_raw_reaction_remove(payload):
             RaidScheduler.addToList(host, userDisplayName)
 
     #test things
-    print("An Emote has been removed")
+    #print("An Emote has been removed")
 
 file = open("token.txt", "r")
 token = str(file.read())

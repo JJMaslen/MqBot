@@ -4,10 +4,12 @@ import dbMethods
 def createRaidEvent(host, time, wings):
     role = "host"
     dbMethods.createTable_EventTable(host)
+    dbMethods.createTable_InfoTable(host)
     dbMethods.addPlayer(host, host, role)
 
 def deleteRaidEvent(host):
     dbMethods.deleteTable_EventTable(host)
+    dbMethods.deleteTable_InfoTable(host)
 
 # check to see if raid event already exists
 def checkRaid(host):

@@ -58,12 +58,36 @@ def createTable_EventTable(host):
     else:
         print("Error! Cannot create the database connection")
 
+def createTable_InfoTable(host):
+    file = open("databasePath.txt", "r")
+    database = str(file.read())
+    file.close()
+
+    sql_create_raidEvents_info = """ CREATE TABLE IF NOT EXISTS raidInfo{}  (
+                                        host text PRIMARY KEY, 
+                                        channel text NOT NULL
+                                        ); """.format(host)
+    conn = create_connection(database)
+    if conn is not None:
+        create_table(conn, sql_create_raidEvents_info)
+    else:
+        print("Error! Cannot create the database connection")
+
 def deleteTable_EventTable(host):
     file = open("databasePath.txt", "r")
     database = str(file.read())
     file.close()
 
     sql = """DROP TABLE raidEvents{}""".format(host)
+    conn = create_connection(database)
+    delete_table(conn, sql)
+
+def deleteTable_InfoTable(host):
+    file = open("databasePath.txt", "r")
+    database = str(file.read())
+    file.close()
+
+    sql = """DROP TABLE raidInfo{}""".format(host)
     conn = create_connection(database)
     delete_table(conn, sql)
 
