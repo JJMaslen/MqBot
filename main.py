@@ -22,6 +22,10 @@ async def on_ready():
 @bot.command()
 async def test(ctx):
     await ctx.send("Hello World", delete_after=10)
+    
+@bot.command()
+async def quaggan(ctx):
+    await ctx.send("Quaggan")
 
 @bot.command()
 async def voteThing(ctx):
