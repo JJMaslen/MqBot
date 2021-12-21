@@ -170,6 +170,18 @@ async def on_raw_reaction_remove(payload):
     #test things
     #print("An Emote has been removed")
 
+@bot.command()
+async def playThatFunkyMusic(ctx):
+    channel = ctx.message.author.voice.channel
+    voc = await channel.connect()
+    voc.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('mambo.mp3')))
+    voc.source.volume = 0.05
+
+@bot.command()
+async def disconnect(ctx):
+    server = ctx.message.guild.voice_client
+    await server.disconnect()
+
 file = open("token.txt", "r")
 token = str(file.read())
 file.close()
