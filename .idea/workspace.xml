@@ -13,22 +13,22 @@
     <session id="-1411548833">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="12" />
+          <entry key="py" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="12" />
+          <entry key="Python" value="15" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2411" />
+          <entry key="py" value="2907" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2411" />
+          <entry key="Python" value="2907" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -37,7 +37,7 @@
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="6" />
           <entry key="project.open.time.19" value="5" />
-          <entry key="project.open.time.20" value="5" />
+          <entry key="project.open.time.20" value="6" />
           <entry key="project.open.time.21" value="2" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.23" value="3" />
@@ -47,71 +47,108 @@
           <entry key="project.open.time.27" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.37" value="1" />
-          <entry key="project.opened" value="33" />
+          <entry key="project.opened" value="34" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-                <marker date="1640004472508" expanded="true" signature="137:142" ph="..." />
-                <marker date="1640004472508" expanded="true" signature="273:278" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="182" column="46" lean-forward="true" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
-              <folding>
-                <element signature="e#705#1047#0" />
-                <element signature="e#1095#1437#0" />
-                <element signature="e#1488#1974#0" />
-                <element signature="e#2028#2470#0" />
-                <element signature="e#2576#3266#0" />
-                <element signature="e#3355#3484#0" />
-                <element signature="e#3576#3862#0" />
-                <element signature="e#3920#4611#0" />
-                <element signature="e#4671#5390#0" />
-                <marker date="1640127839879" expanded="true" signature="5674:5750" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dbMethods.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#891#1433#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RaidScheduler.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-start-column="16" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.6096356">
+      <split-first>
+        <splitter split-orientation="horizontal" split-proportion="0.54370797">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/run.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="187">
+                      <caret line="12" selection-start-line="12" selection-end-line="12" />
+                      <folding>
+                        <element signature="e#0#26#0" expanded="true" />
+                        <marker date="1640004472508" expanded="true" signature="137:142" ph="..." />
+                        <marker date="1640004472508" expanded="true" signature="273:278" ph="..." />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/main.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="218">
+                      <caret line="109" column="31" lean-forward="true" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
+                      <folding>
+                        <element signature="e#34#52#0" expanded="true" />
+                        <element signature="e#461#507#0" />
+                        <element signature="e#556#581#0" />
+                        <element signature="e#628#970#0" />
+                        <element signature="e#1018#1360#0" />
+                        <element signature="e#1411#1897#0" />
+                        <element signature="e#1951#2393#0" />
+                        <element signature="e#2596#3313#0" />
+                        <element signature="e#3329#3458#0" />
+                        <element signature="e#3550#3836#0" />
+                        <element signature="e#3894#4562#0" />
+                        <element signature="e#4622#5342#0" />
+                        <element signature="e#5446#5631#0" />
+                        <element signature="e#5679#5748#0" />
+                        <marker date="1640193332746" expanded="true" signature="3232:3234" ph="..." />
+                        <marker date="1640193332746" expanded="true" signature="5603:5679" ph="..." />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/RaidScheduler.py">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="153">
+                      <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+                      <folding>
+                        <element signature="e#694#726#0" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/dbMethods.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="269">
+                  <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                    <element signature="e#94#211#0" />
+                    <element signature="e#259#365#0" />
+                    <element signature="e#404#476#0" />
+                    <element signature="e#518#565#0" />
+                    <element signature="e#598#681#0" />
+                    <element signature="e#715#762#0" />
+                    <element signature="e#797#833#0" />
+                    <element signature="e#891#1433#0" />
+                    <element signature="e#1490#2295#0" />
+                    <element signature="e#2053#2259#0" />
+                    <element signature="e#2298#2502#0" />
+                    <element signature="e#2529#2779#0" />
+                    <element signature="e#3546#3818#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -143,12 +180,13 @@
       <list>
         <option value="$PROJECT_DIR$/genericBot.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/dbMethods.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/dbMethods.py" />
+        <option value="$PROJECT_DIR$/RaidScheduler.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-15" />
     <option name="y" value="-23" />
     <option name="width" value="1936" />
@@ -270,10 +308,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14699684" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09905163" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -361,37 +399,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dbMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        <state relative-caret-position="269">
+          <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#94#211#0" />
+            <element signature="e#259#365#0" />
+            <element signature="e#404#476#0" />
+            <element signature="e#518#565#0" />
+            <element signature="e#598#681#0" />
+            <element signature="e#715#762#0" />
+            <element signature="e#797#833#0" />
             <element signature="e#891#1433#0" />
+            <element signature="e#1490#2295#0" />
+            <element signature="e#2053#2259#0" />
+            <element signature="e#2298#2502#0" />
+            <element signature="e#2529#2779#0" />
+            <element signature="e#3546#3818#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RaidScheduler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
+        <state relative-caret-position="153">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="e#694#726#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="182" column="46" lean-forward="true" selection-start-line="182" selection-start-column="46" selection-end-line="182" selection-end-column="46" />
+        <state relative-caret-position="218">
+          <caret line="109" column="31" lean-forward="true" selection-start-line="109" selection-start-column="31" selection-end-line="109" selection-end-column="31" />
           <folding>
-            <element signature="e#705#1047#0" />
-            <element signature="e#1095#1437#0" />
-            <element signature="e#1488#1974#0" />
-            <element signature="e#2028#2470#0" />
-            <element signature="e#2576#3266#0" />
-            <element signature="e#3355#3484#0" />
-            <element signature="e#3576#3862#0" />
-            <element signature="e#3920#4611#0" />
-            <element signature="e#4671#5390#0" />
-            <marker date="1640127839879" expanded="true" signature="5674:5750" ph="..." />
+            <element signature="e#34#52#0" expanded="true" />
+            <element signature="e#461#507#0" />
+            <element signature="e#556#581#0" />
+            <element signature="e#628#970#0" />
+            <element signature="e#1018#1360#0" />
+            <element signature="e#1411#1897#0" />
+            <element signature="e#1951#2393#0" />
+            <element signature="e#2596#3313#0" />
+            <element signature="e#3329#3458#0" />
+            <element signature="e#3550#3836#0" />
+            <element signature="e#3894#4562#0" />
+            <element signature="e#4622#5342#0" />
+            <element signature="e#5446#5631#0" />
+            <element signature="e#5679#5748#0" />
+            <marker date="1640193332746" expanded="true" signature="3232:3234" ph="..." />
+            <marker date="1640193332746" expanded="true" signature="5603:5679" ph="..." />
           </folding>
         </state>
       </provider>

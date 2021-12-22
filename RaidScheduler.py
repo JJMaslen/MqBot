@@ -1,11 +1,13 @@
 import dbMethods
 
 # create new raid event
-def createRaidEvent(host, time, wings):
+def createRaidEvent(host, hostID, messageID, channelID):
     role = "host"
-    dbMethods.createTable_EventTable(host)
-    dbMethods.createTable_InfoTable(host)
-    dbMethods.addPlayer(host, host, role)
+
+    dbMethods.createTable_EventTable(hostID)
+    dbMethods.createTable_InfoTable(hostID, messageID, channelID)
+
+    dbMethods.addPlayer(hostID, host, role)
 
 def deleteRaidEvent(host):
     dbMethods.deleteTable_EventTable(host)
@@ -26,16 +28,10 @@ def postRaid(host):
     return dbMethods.readTable(host)
 
 # adds person to a raid event list
-def addToList(host, user):
+def addToList(hostID, user):
     role = "player"
-    dbMethods.addPlayer(host, user, role)
+    dbMethods.addPlayer(hostID, user, role)
 
 # removes person from a raid event list
 def removeFromList(host, user):
     dbMethods.removePlayer(host, user)
-
-# officer must be able to schedule raid
-
-#user must be able to react to message to sign up
-
-#user must be able to un react to message to un sign up

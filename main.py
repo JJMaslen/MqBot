@@ -8,7 +8,7 @@ from discord.ext import commands
 import genericBot
 import RaidScheduler
 
-bot_prefix = "!"
+bot_prefix = "?"
 intents = discord.Intents().all()
 bot = commands.Bot(command_prefix=bot_prefix, intents=intents)
 bot.remove_command("help")
@@ -91,12 +91,13 @@ async def scheduleRaid(ctx, time, *args):
     user = ctx.message.author.display_name
     userID = ctx.message.author.id
 
-    if not RaidScheduler.checkRaid(user):
-        RaidScheduler.createRaidEvent(userID, time, str(args))
-        RaidScheduler.cr
+    if not RaidScheduler.checkRaid(userID):
         channel = bot.get_channel(922494025687269417)
         message = await channel.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message. <@&821039188634763324>".format(user, inputTime, args))
         await message.add_reaction("👍")
+
+        RaidScheduler.createRaidEvent(user, userID, message.id, channel.id)
+
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
 
@@ -111,10 +112,10 @@ async def viewRaid(ctx):
 @bot.command()
 @commands.has_any_role('Leader', 'Officer')
 async def cancelRaid(ctx):
-    user = ctx.message.author.display_name.split()[0]
+    userID = ctx.message.author.id
 
-    if RaidScheduler.checkRaid(user):
-        RaidScheduler.deleteRaidEvent(user)
+    if RaidScheduler.checkRaid(userID):
+        RaidScheduler.deleteRaidEvent(userID)
         await ctx.send("Your scheduled raid has been cancelled")
     else:
         await ctx.send("You do not currently have a raid scheduled to cancel")
