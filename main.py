@@ -1,4 +1,5 @@
 # Main Imports
+import random
 
 # Discord Imports
 import discord
@@ -182,7 +183,19 @@ async def on_raw_reaction_remove(payload):
 async def playThatFunkyMusic(ctx):
     channel = ctx.message.author.voice.channel
     voc = await channel.connect()
-    voc.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('mambo.mp3')))
+    randomNumber = random.randint(0,10)
+
+    if randomNumber == 10:
+        voc.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('mamboPog.mp3')))
+    else:
+        voc.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('mambo.mp3')))
+    voc.source.volume = 0.05
+
+@bot.command()
+async def playThatFunkyMusicPog(ctx):
+    channel = ctx.message.author.voice.channel
+    voc = await channel.connect()
+    voc.play(discord.PCMVolumeTransformer(discord.FFmpegPCMAudio('mamboPog.mp3')))
     voc.source.volume = 0.05
 
 @bot.command()
