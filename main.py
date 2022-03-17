@@ -96,10 +96,16 @@ async def scheduleRaid(ctx, time, *args):
     inputTime = time
     user = ctx.message.author.display_name.split()[0]
 
+    message = ""
+
+    for item in args:
+        message += item
+        message += " "
+
     if not RaidScheduler.checkRaid(user):
         RaidScheduler.createRaidEvent(user, time, str(args))
         channel = bot.get_channel(821040703810437201)
-        message = await channel.send("{} is hosting a Raid at: {} (GMT). They will be playing the following wings: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message. <@&821039188634763324>".format(user, inputTime, args))
+        message = await channel.send("{} is hosting a Raid at: {} (GMT). They will be doing: {}. To sign up for this raid, please react to this message with a :thumbsup:. To remove yourself from the signup, remove the :thumbsup: from this message. <@&821039188634763324>".format(user, inputTime, message))
         await message.add_reaction("👍")
     else:
         await ctx.send("You already have a raid scheduled, use !checkRaid to see it")
