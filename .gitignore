@@ -2,3 +2,4 @@ token.txt
 *.txt
 db/mq.db
 build/
+*.mp3
